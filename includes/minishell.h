@@ -1,25 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/05 20:22:56 by mmouhssi         ###   ########.fr       */
+/*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
+/*   Updated: 2017/12/05 17:18:54 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# include "../lib/libft/includes/libft.h"
 
-int main()
-{
-	char *tmp = (char *)ft_memalloc(5);
-	
-	read(0, tmp, 5);
-	ft_printf(tmp);
-	read(0, tmp, 5);
-	ft_printf(tmp);
-
-		
-}
+#endif
