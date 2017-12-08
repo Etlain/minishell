@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/07 22:23:55 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/08 22:45:12 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,20 @@
 # define MINISHELL_H
 # include "../lib/libft/includes/libft.h"
 
-void	ft_env(char **envp);
+typedef struct	s_sh
+{
+	int			process;
+	char 		**envp;
+	char 		**cmd;
+	void		***builtin;
+}				t_sh;
+
+char			**ft_init_cmd(char *input);
+void			ft_init_sh(t_sh **sh, char **envp);
+void			ft_env(t_sh **sh);
+char			*ft_get_one_env(char **envp, char *name);
+char			*ft_prompt(char **envp);
+void			***ft_tab_builtin();
+int				ft_builtin(t_sh **sh, char *cmd);
 
 #endif

@@ -14,7 +14,11 @@ NAME = minishell
 
 LIB = lib/libft/libft.a
 
-SRC = 	builtin/env/ft_env.c	\
+SRC = 	builtin/ft_builtin.c			\
+		builtin/env/ft_env.c			\
+		builtin/env/ft_get_one_env.c	\
+		ft_init.c						\
+		ft_prompt.c						\
 		main.c
 
 PATH_SRC = src/

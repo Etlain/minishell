@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/08 21:40:39 by mmouhssi         ###   ########.fr       */
+/*   Created: 2017/12/08 17:50:27 by mmouhssi          #+#    #+#             */
+/*   Updated: 2017/12/08 18:07:39 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-void	ft_env(t_sh **sh)
+char	*ft_prompt(char **envp)
 {
-	// recuperer parametre
-	// -i env vide
-	// -u name effacer var
-	// pas de param
-	ft_putendl_tab((*sh)->envp);
-	//gestion erreur
+	char *tmp;
+	char *prompt;
+
+	tmp = ft_get_one_env(envp, "USER");
+	prompt = ft_strjoin(tmp, "$>");
+	return (prompt);
 }

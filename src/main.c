@@ -6,70 +6,58 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/07 22:23:32 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/08 22:46:58 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char	*get_input()
-{
-	char	*input;
-	char	*buf;
-	char	*tmp;
-
-	input = NULL;
-	buf = (char *)ft_memalloc(10);
-	while (read(0, buf, 10) != 0)
-	{	
-		if (input)
-		{
-			tmp = input;
-			input = ft_strjoin(tmp, buf);
-			free(tmp);
-		}
-		else
-		{
-			input = (char *)malloc(ft_strlen(buf));
-			input = ft_strcpy(input, buf);
-		}
-		if (ft_strchr(buf, '\n'))
-			break ;
-		ft_bzero(buf, 10);
-	}
-	free(buf);
-	//close(0);
-	return (input);	
-}
-
 int main(int argc, char **argv, char **envp)
 {
-	char *input;
-	char *tmp;
-	
-	//ft_putendl(ft_strtrim(input));
+	t_sh	*sh;
+	char	*prompt;
+	int		i;
+	int		b;
+
+	ft_init_sh(&sh, envp);
+	prompt = ft_prompt(sh->envp);
 	while (1)
 	{
-		ft_putstr("$>"); // mettre variable env user un jour
-		tmp = get_input();
-		input = ft_strtrim(tmp);
-		free(tmp);
-		if (ft_strncmp(input, "exit", 4) == 0)
+		if (sh->process != 0)
+			ft_putstr(prompt);
+		sh->cmd = ft_init_cmd(ft_get_input());
+		i = 0;
+		while (sh->cmd[i] != NULL)
 		{
-			free(input);
-			break ;
+			//ft_putendl(sh->cmd[i]);
+			// builtin
+			if (b == 0)
+				b = ft_builtin(&sh, sh->cmd[i]);
+			// binaries
+			/*if (b == 0)
+				b = ft_bin();
+			*/// error
+			/*
+			else
+				;
+			*/
+
+	/*		else if (ft_strncmp(sh->cmd[i], "test", 4) == 0)
+			{
+				sh->process = fork();
+				if (sh->process == 0)
+					execve("/bin/ls", argv, sh->envp);
+				else
+					waitpid(sh->process, NULL, 0);
+			}
+			else if (ft_strncmp(sh->cmd[i], "env", 3) == 0)
+				ft_env(sh->envp);
+		*/	// si chaine vide rien ne se passe
+			b = 0;
+			i++;
 		}
-		else if (ft_strncmp(input, "test", 4) == 0)
-		{
-			execve("/bin/ls", argv, envp);
-		}
-		else if (ft_strncmp(input, "env", 3) == 0)
-			ft_env(envp);
-		free(input);
+		ft_free_tab(sh->cmd);
 	}
+	// free builtin etc..
 	exit(0);
-	//ft_env(envp);
-	/*char *tmp = get_input();
-	ft_printf(tmp);*/
-	//ft_putendl_tab(envp);
 }

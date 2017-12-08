@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:42:01 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/03/16 17:09:44 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/08 17:30:44 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ int					ft_wnstrlen(wchar_t *str, int lgt);
 void				ft_putldbl(long double nbr, int size);
 int					get_next_line(int const fd, char **line);
 char				*ft_param(char **argv, int argc, int (*f)(char c));
+char				*ft_get_input();
 
 #endif

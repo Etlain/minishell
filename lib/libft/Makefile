@@ -58,7 +58,7 @@ SRC =   conversion/ft_ahtoi.c conversion/ft_atoi.c conversion/ft_base.c		\
 	ft_printf/ft_sc.c ft_printf/ft_type.c ft_printf/ft_wp.c			\
 	ft_printf/no_print.c ft_printf/write_nbr.c	\
 	\
-	input/ft_param.c
+	input/ft_param.c input/ft_get_input.c
 
 OBJ = $(SRC:.c=.o)
 
