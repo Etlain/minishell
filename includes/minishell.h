@@ -6,13 +6,14 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/08 22:45:12 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/09 12:31:33 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include "../lib/libft/includes/libft.h"
+# include <dirent.h>
 
 typedef struct	s_sh
 {
@@ -29,5 +30,6 @@ char			*ft_get_one_env(char **envp, char *name);
 char			*ft_prompt(char **envp);
 void			***ft_tab_builtin();
 int				ft_builtin(t_sh **sh, char *cmd);
+int				ft_bin(t_sh **sh, char *cmd);
 
 #endif

@@ -19,6 +19,7 @@ SRC = 	builtin/ft_builtin.c			\
 		builtin/env/ft_get_one_env.c	\
 		ft_init.c						\
 		ft_prompt.c						\
+		ft_bin.c						\
 		main.c
 
 PATH_SRC = src/

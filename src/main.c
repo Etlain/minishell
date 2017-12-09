@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/08 22:46:58 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/09 11:31:35 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int main(int argc, char **argv, char **envp)
 			if (b == 0)
 				b = ft_builtin(&sh, sh->cmd[i]);
 			// binaries
-			/*if (b == 0)
-				b = ft_bin();
-			*/// error
+			if (b == 0)
+				b = ft_bin(&sh, sh->cmd[i]);
+			// error
 			/*
 			else
 				;
