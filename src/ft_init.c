@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 22:42:17 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/08 22:44:18 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:06:26 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void    ft_init_sh(t_sh **sh, char **envp)
 	*sh = (t_sh *)malloc(sizeof(t_sh));
 	(*sh)->process = 1;
 	(*sh)->cmd = NULL;
-	(*sh)->envp = envp;
+	(*sh)->envp = envp; // envp du main, malloc pas necessaire
 	(*sh)->builtin = ft_tab_builtin();
+	(*sh)->bin_path = ft_fill_bin_path(envp);
 }

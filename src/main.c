@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/09 11:31:35 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/13 19:14:23 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ int main(int argc, char **argv, char **envp)
 		while (sh->cmd[i] != NULL)
 		{
 			//ft_putendl(sh->cmd[i]);
-			// builtin
 			if (b == 0)
 				b = ft_builtin(&sh, sh->cmd[i]);
-			// binaries
 			if (b == 0)
 				b = ft_bin(&sh, sh->cmd[i]);
 			// error
@@ -42,17 +40,7 @@ int main(int argc, char **argv, char **envp)
 				;
 			*/
 
-	/*		else if (ft_strncmp(sh->cmd[i], "test", 4) == 0)
-			{
-				sh->process = fork();
-				if (sh->process == 0)
-					execve("/bin/ls", argv, sh->envp);
-				else
-					waitpid(sh->process, NULL, 0);
-			}
-			else if (ft_strncmp(sh->cmd[i], "env", 3) == 0)
-				ft_env(sh->envp);
-		*/	// si chaine vide rien ne se passe
+			// si chaine vide rien ne se passe
 			b = 0;
 			i++;
 		}
