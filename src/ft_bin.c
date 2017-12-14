@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/13 19:03:24 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/14 16:26:52 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,33 @@ int	ft_bin(t_sh **sh, char *cmd)
 	char *path;
 
 	path_folder = ft_get_folder_bin((*sh)->bin_path, cmd);
-	if (path == NULL)
-		return (-1);
+	if (path_folder == NULL)
+		return (0);
 	else
 	{
 		tab_cmd = ft_strsplit(cmd, ' ');
 		if (ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
 		{
+			ft_putendl("hello");
 			(*sh)->process = fork();
 			if ((*sh)->process == 0)
 			{
 				path = ft_strjoin_path(path_folder, tab_cmd[0]);
 				execve(path, &tab_cmd[0], (*sh)->envp);
 				free(path);
+				ft_free_tab(tab_cmd);
+				return (0);
 			}
 			else
+			{
 				waitpid((*sh)->process, NULL, 0);
+				(*sh)->process = 1;
+			}
+			ft_free_tab(tab_cmd);
 			return (1);
 		}
+		ft_free_tab(tab_cmd);
 	}
-	ft_free_tab(tab_cmd);
 	free(path_folder);
 	// free
 	return (0);

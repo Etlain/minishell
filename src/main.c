@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/13 19:14:23 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/14 16:28:18 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,22 @@ int main(int argc, char **argv, char **envp)
 		i = 0;
 		while (sh->cmd[i] != NULL)
 		{
-			//ft_putendl(sh->cmd[i]);
 			if (b == 0)
 				b = ft_builtin(&sh, sh->cmd[i]);
 			if (b == 0)
 				b = ft_bin(&sh, sh->cmd[i]);
-			// error
-			/*
-			else
-				;
-			*/
-
+			if (b == 0)
+			{
+				//ft_error();
+				ft_putendl_fd("sh : command not found", 2);
+			}
 			// si chaine vide rien ne se passe
 			b = 0;
 			i++;
 		}
 		ft_free_tab(sh->cmd);
 	}
+	free(prompt);
 	// free builtin etc..
 	exit(0);
 }
