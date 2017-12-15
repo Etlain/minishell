@@ -6,11 +6,11 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 15:24:03 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:47:17 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../../includes/minishell.h"
 
 char		**ft_fill_bin_path(t_list *built)
 {
@@ -32,7 +32,10 @@ static int	ft_is_folder_cmd(char *folder, char *cmd)
 	while ((file = readdir(dir)) != NULL)
 	{
 		if (ft_strncmp(cmd, file->d_name, ft_strlen(file->d_name)) == 0)
+		{
+			closedir(dir);
 			return (1);
+		}
 	}
 	closedir(dir);
 	return (0);
@@ -54,40 +57,20 @@ static char	*ft_get_folder_bin(char **tab_folder, char *cmd)
 
 int	ft_bin(t_sh **sh, char *cmd)
 {
-	char **tab_cmd;
 	char *path_folder;
-	char *path;
+	int	ret;
 
+	ret = 0;
+	path_folder = NULL;
 	path_folder = ft_get_folder_bin((*sh)->envp->bin_path, cmd);
 	if (path_folder == NULL)
 		return (0);
 	else
 	{
-		tab_cmd = ft_strsplit(cmd, ' ');
-		if (ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
-		{
-			(*sh)->process = fork();
-			if ((*sh)->process == 0)
-			{
-				path = ft_strjoin_path(path_folder, tab_cmd[0]);
-				// condition pour modifier envp->bin grace a modif
-				execve(path, &tab_cmd[0], (*sh)->envp->bin);
-				// sh : exec format error : ./t
-				free(path);
-				ft_free_tab(tab_cmd);
-				return (0);
-			}
-			else
-			{
-				waitpid((*sh)->process, NULL, 0);
-				(*sh)->process = 1;
-			}
-			ft_free_tab(tab_cmd);
-			return (1);
-		}
-		ft_free_tab(tab_cmd);
+		ft_putendl("welcome in ft bin");
+		ret = ft_exec_bin(sh, path_folder, cmd);
 	}
-	free(path_folder);
+	//free(path_folder); ne pas utiliser ce free
 	// free
-	return (0);
+	return (ret);
 }

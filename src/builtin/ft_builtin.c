@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 14:43:46 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/13 20:49:50 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 18:10:33 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ int		ft_builtin(t_sh **sh, char *cmd)
 	if (ft_strncmp(cmd, "exit", 4) == 0)
 	{
 		// free liste chainee
-		ft_free_tab((*sh)->cmd);
-		exit(0);
+		//ft_free_tab((*sh)->cmd);
+		//exit(0);
+		return (-2);
 	}
 	return (0);
 }

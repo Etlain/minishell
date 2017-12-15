@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 15:24:05 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 20:47:35 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,20 @@ int main(int argc, char **argv, char **envp)
 			if (b == 0)
 				b = ft_bin(&sh, sh->cmd[i]);
 			if (b == 0)
-				ft_error_cmd(sh->cmd[i]);
+			{
+				b = ft_exec_bin(&sh, NULL, sh->cmd[i]);
+			}
+			if (b == -2)
+			{
+				free(prompt);
+				// free builtin etc..
+				exit(0); // valeur de retour voir wait
+			}
 			// si chaine vide rien ne se passe
 			b = 0;
 			i++;
 		}
 		ft_free_tab(sh->cmd);
 	}
-	free(prompt);
-	// free builtin etc..
-	exit(0);
+	return (0);
 }

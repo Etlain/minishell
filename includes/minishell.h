@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 15:23:58 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 16:19:05 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ char			**ft_fill_bin_path(t_list *built);
 void			ft_error_cmd(char *cmd);
 t_list			*ft_lst_cpy_envp(char **envp);
 void			ft_lst_putendl(t_list *lst);
+int				ft_exec_bin(t_sh **sh, char *path_folder, char *cmd);
 
 #endif

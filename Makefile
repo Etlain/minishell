@@ -20,7 +20,8 @@ SRC = 	builtin/ft_builtin.c			\
 		ft_list.c						\
 		ft_init.c						\
 		ft_prompt.c						\
-		ft_bin.c						\
+		bin/ft_bin.c					\
+		bin/ft_exec_bin.c				\
 		ft_error.c						\
 		main.c
 
