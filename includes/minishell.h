@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/13 20:35:59 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 15:23:58 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,35 @@
 # include "../lib/libft/includes/libft.h"
 # include <dirent.h>
 
+typedef struct	s_envp
+{
+	t_list		*built;
+	char		**bin;
+	char		**bin_path;
+	int			modif;
+}				t_envp;
+
+
+
 typedef struct	s_sh
 {
 	int			process;
-	char 		**envp;
+	t_envp 		*envp;
 	char 		**cmd;
 	void		***builtin;
-	char		**bin_path;
 }				t_sh;
 
 char			**ft_init_cmd(char *input);
 void			ft_init_sh(t_sh **sh, char **envp);
 void			ft_env(t_sh **sh);
-char			*ft_get_one_env(char **envp, char *name);
-char			*ft_prompt(char **envp);
+char			*ft_get_one_env(t_list *built, char *name);
+char			*ft_prompt(t_list *built);
 void			***ft_tab_builtin();
 int				ft_builtin(t_sh **sh, char *cmd);
 int				ft_bin(t_sh **sh, char *cmd);
-char			**ft_fill_bin_path(char **envp);
+char			**ft_fill_bin_path(t_list *built);
+void			ft_error_cmd(char *cmd);
+t_list			*ft_lst_cpy_envp(char **envp);
+void			ft_lst_putendl(t_list *lst);
 
 #endif

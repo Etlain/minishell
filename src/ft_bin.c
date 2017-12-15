@@ -6,18 +6,18 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/14 16:26:52 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 15:24:03 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char		**ft_fill_bin_path(char **envp)
+char		**ft_fill_bin_path(t_list *built)
 {
 	char **bin_path;
 
-	bin_path = ft_strsplit(ft_get_one_env(envp, "PATH"), ':');
-	//ft_putendl_tab(bin_path);
+	bin_path = ft_strsplit(ft_get_one_env(built, "PATH"), ':');
+	ft_putendl_tab(bin_path);
 	return (bin_path);
 }
 
@@ -37,8 +37,6 @@ static int	ft_is_folder_cmd(char *folder, char *cmd)
 	closedir(dir);
 	return (0);
 }
-
-// static function qui verifie dans chaque repertoire
 
 static char	*ft_get_folder_bin(char **tab_folder, char *cmd)
 {
@@ -60,7 +58,7 @@ int	ft_bin(t_sh **sh, char *cmd)
 	char *path_folder;
 	char *path;
 
-	path_folder = ft_get_folder_bin((*sh)->bin_path, cmd);
+	path_folder = ft_get_folder_bin((*sh)->envp->bin_path, cmd);
 	if (path_folder == NULL)
 		return (0);
 	else
@@ -68,12 +66,13 @@ int	ft_bin(t_sh **sh, char *cmd)
 		tab_cmd = ft_strsplit(cmd, ' ');
 		if (ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
 		{
-			ft_putendl("hello");
 			(*sh)->process = fork();
 			if ((*sh)->process == 0)
 			{
 				path = ft_strjoin_path(path_folder, tab_cmd[0]);
-				execve(path, &tab_cmd[0], (*sh)->envp);
+				// condition pour modifier envp->bin grace a modif
+				execve(path, &tab_cmd[0], (*sh)->envp->bin);
+				// sh : exec format error : ./t
 				free(path);
 				ft_free_tab(tab_cmd);
 				return (0);

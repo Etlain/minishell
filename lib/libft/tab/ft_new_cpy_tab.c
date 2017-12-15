@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prompt.c                                        :+:      :+:    :+:   */
+/*   ft_new_cpy_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 17:50:27 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 14:25:59 by mmouhssi         ###   ########.fr       */
+/*   Created: 2017/12/14 19:11:06 by mmouhssi          #+#    #+#             */
+/*   Updated: 2017/12/14 19:44:05 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "../includes/libft.h"
 
-char	*ft_prompt(t_list *built)
+char	**ft_new_cpy_tab(char **src)
 {
-	char *tmp;
-	char *prompt;
+	char 	**tab;
+	int		i;
+	int		lgt;
 
-	tmp = ft_get_one_env(built, "USER"); // PWD
-	prompt = ft_strjoin(tmp, "$> ");
-	return (prompt);
+	lgt = 0;
+	while (src[lgt] != NULL)
+		lgt++;
+	tab = (char **)malloc(sizeof(char *) * lgt + 1);
+	i = 0;
+	while (src[i] != NULL)
+	{
+		tab[i] = (char *)malloc(sizeof(char) * ft_strlen(src[i]));
+		ft_strcpy(tab[i], src[i]);
+		i++;
+	}
+	tab[i] = NULL;
+	return (tab);
 }

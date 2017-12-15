@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/24 15:42:01 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/08 17:30:44 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/14 19:39:35 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,5 +128,6 @@ void				ft_putldbl(long double nbr, int size);
 int					get_next_line(int const fd, char **line);
 char				*ft_param(char **argv, int argc, int (*f)(char c));
 char				*ft_get_input();
+char				**ft_new_cpy_tab(char **src);
 
 #endif
