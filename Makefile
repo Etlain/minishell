@@ -22,6 +22,7 @@ SRC = 	builtin/ft_builtin.c			\
 		ft_prompt.c						\
 		bin/ft_bin.c					\
 		bin/ft_exec_bin.c				\
+		builtin/ft_echo.c				\
 		ft_error.c						\
 		main.c
 

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_builtin.c                                       :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 14:43:46 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 22:32:29 by mmouhssi         ###   ########.fr       */
+/*   Created: 2017/12/15 21:06:19 by mmouhssi          #+#    #+#             */
+/*   Updated: 2017/12/15 22:51:48 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int		ft_builtin(t_sh **sh, char *cmd)
+void	ft_echo(char *cmd)
 {
-	char ***builtin;
-	int i;
-	int lgt;
+	char *str;
 
-	if (ft_strncmp(cmd, "exit", 4) == 0)
-		return (-1);
-	else if (ft_strncmp(cmd, "env", 3) == 0)
-		ft_env(sh);
-	else if (ft_strncmp(cmd, "echo", 4) == 0)
-		ft_echo(&cmd[4]);	
-	return (0);
+	// guillemet
+	ft_putendl(cmd);
+	//str = (*sh)->cmd[ft_strlen("echo")];
+	//ft_putendl((char *)&(*sh)->cmd[5]);
 }

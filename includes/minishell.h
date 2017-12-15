@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 16:19:05 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:29:02 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 
 typedef struct	s_envp
 {
-	t_list		*built;
-	char		**bin;
-	char		**bin_path;
-	int			modif;
+	t_list		*built; // list tab env
+	char		**bin; // tab env bin
+	char		**bin_path; // folder bin
+	int			modif; // modif tab env bin
 }				t_envp;
 
 
@@ -30,15 +30,14 @@ typedef struct	s_sh
 	int			process;
 	t_envp 		*envp;
 	char 		**cmd;
-	void		***builtin;
 }				t_sh;
 
 char			**ft_init_cmd(char *input);
 void			ft_init_sh(t_sh **sh, char **envp);
 void			ft_env(t_sh **sh);
+void			ft_echo(char *cmd);
 char			*ft_get_one_env(t_list *built, char *name);
 char			*ft_prompt(t_list *built);
-void			***ft_tab_builtin();
 int				ft_builtin(t_sh **sh, char *cmd);
 int				ft_bin(t_sh **sh, char *cmd);
 char			**ft_fill_bin_path(t_list *built);

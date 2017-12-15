@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 22:42:17 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/15 15:47:26 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2017/12/15 22:23:59 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,4 @@ void    ft_init_sh(t_sh **sh, char **envp)
 	(*sh)->envp->bin = ft_new_cpy_tab(envp);
 	(*sh)->envp->bin_path = ft_fill_bin_path(tmp);
 	(*sh)->envp->modif = 0;
-	(*sh)->builtin = ft_tab_builtin();
 }
