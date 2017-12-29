@@ -15,6 +15,8 @@ NAME = minishell
 LIB = lib/libft/libft.a
 
 SRC = 	builtin/ft_builtin.c			\
+		builtin/ft_echo.c				\
+		builtin/ft_get_ascii.c			\
 		builtin/env/ft_env.c			\
 		builtin/env/ft_get_one_env.c	\
 		ft_list.c						\
@@ -22,7 +24,6 @@ SRC = 	builtin/ft_builtin.c			\
 		ft_prompt.c						\
 		bin/ft_bin.c					\
 		bin/ft_exec_bin.c				\
-		builtin/ft_echo.c				\
 		ft_error.c						\
 		main.c
 
