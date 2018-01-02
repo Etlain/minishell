@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 20:48:38 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/14 21:55:18 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/02 21:28:35 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_list		*ft_lst_cpy_envp(char **envp)
 		else
 		{
 			tmp = ft_lstnew((void *)envp[i], ft_strlen(envp[i]));
-			ft_lstadd(&lst, tmp);
+			ft_lstaddend(&lst, tmp);
 		}
 		i++;
 	}

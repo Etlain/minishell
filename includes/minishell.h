@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/29 16:08:28 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/02 19:51:30 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct	s_envp
 {
-	t_list		*built; // list tab env
+	t_list		**built; // list tab env
 	char		**bin; // tab env bin
 	char		**bin_path; // folder bin
 	int			modif; // modif tab env bin
@@ -34,7 +34,7 @@ typedef struct	s_sh
 
 char			**ft_init_cmd(char *input);
 void			ft_init_sh(t_sh **sh, char **envp);
-void			ft_env(t_sh **sh);
+int				ft_env(t_sh **sh, char *cmd);
 void			ft_echo(char *cmd);
 char			*ft_get_one_env(t_list *built, char *name);
 char			*ft_prompt(t_list *built);

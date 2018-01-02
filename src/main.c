@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/19 18:23:18 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/02 20:05:41 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int argc, char **argv, char **envp)
 	int		b;
 
 	ft_init_sh(&sh, envp);
-	prompt = ft_prompt(sh->envp->built);
+	prompt = ft_prompt(*sh->envp->built);
 	b = 0;
 	while (1)
 	{
