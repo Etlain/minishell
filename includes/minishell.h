@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/02 19:51:30 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/04 22:51:03 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef struct	s_envp
 {
-	t_list		**built; // list tab env
+	t_list		*built; // list tab env
 	char		**bin; // tab env bin
 	char		**bin_path; // folder bin
 	int			modif; // modif tab env bin

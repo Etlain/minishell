@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/14 20:48:38 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/02 21:28:35 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/04 22:43:49 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		ft_lst_putendl(t_list *lst)
 	tmp = lst;
 	if (tmp == NULL)
 		return ;
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		ft_putendl((char *)tmp->content);
 		tmp = tmp->next;

@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/02 18:23:52 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/04 22:57:25 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char		**ft_fill_bin_path(t_list *built)
 	char **bin_path;
 
 	bin_path = ft_strsplit(ft_get_one_env(built, "PATH"), ':');
-	ft_putendl_tab(bin_path);
+	//ft_putendl_tab(bin_path);
 	return (bin_path);
 }
 
