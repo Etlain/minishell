@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_one_env.c                                   :+:      :+:    :+:   */
+/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 17:05:56 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/05 21:15:24 by mmouhssi         ###   ########.fr       */
+/*   Created: 2018/01/05 20:11:57 by mmouhssi          #+#    #+#             */
+/*   Updated: 2018/01/05 21:59:02 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char    *ft_get_one_env(t_list *built, char *name)
+void	ft_unsetenv(t_sh **sh, char **tab)
 {
 	t_list	*tmp;
-	int		lgt_name;
-	int 	i;
+	char	*str;
+	int		i;
 
-	i = 0;
-	tmp = built;
-	lgt_name = ft_strlen(name);
-	while (tmp->next != NULL)
+	i = ft_tablen(tab);
+	if (i < 1)
+		ft_putendl_fd("setenv : too few argument", 2);
+	else
 	{
-		if (ft_strncmp((char *)tmp->content, name, lgt_name) == 0)
+		i = 0;
+		while (tab[i] != NULL)
 		{
-			if (((char *)tmp->content)[lgt_name] != '=')
-				return (NULL);
-			return ((char *)&tmp->content[lgt_name + 1]);
+			tmp = ft_get_lst_elem(&(*sh)->envp->built, tab[i]);
+			if (tmp != NULL)
+				ft_lstdel_elem(&tmp);
+			i++;
 		}
-		tmp = tmp->next;
 	}
-	return (NULL);
 }

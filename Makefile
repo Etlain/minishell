@@ -18,8 +18,10 @@ SRC = 	builtin/ft_builtin.c			\
 		builtin/ft_echo.c				\
 		builtin/ft_get_ascii.c			\
 		builtin/env/ft_env.c			\
+		builtin/env/ft_setenv.c			\
+		builtin/env/ft_unsetenv.c		\
+		builtin/env/ft_get_lst_elem.c	\
 		builtin/env/ft_get_one_env.c	\
-		ft_list.c						\
 		ft_init.c						\
 		ft_prompt.c						\
 		bin/ft_bin.c					\

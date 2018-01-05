@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/05 19:48:07 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/05 21:15:03 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ typedef struct	s_sh
 char			**ft_init_cmd(char *input);
 void			ft_init_sh(t_sh **sh, char **envp);
 int				ft_env(t_sh **sh, char *cmd);
+void			ft_setenv(t_sh **sh, char **tab);
+void			ft_unsetenv(t_sh **sh, char **tab);
 void			ft_echo(char *cmd);
 char			*ft_get_one_env(t_list *built, char *name);
+t_list			*ft_get_lst_elem(t_list **built, char *name);
 char			*ft_prompt(t_list *built);
 int				ft_builtin(t_sh **sh, char *cmd);
 int				ft_bin(t_sh **sh, char *cmd);

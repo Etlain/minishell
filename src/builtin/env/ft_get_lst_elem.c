@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_one_env.c                                   :+:      :+:    :+:   */
+/*   ft_get_lst_elem.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 17:05:56 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/05 21:15:24 by mmouhssi         ###   ########.fr       */
+/*   Created: 2018/01/05 21:11:48 by mmouhssi          #+#    #+#             */
+/*   Updated: 2018/01/05 21:15:10 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char    *ft_get_one_env(t_list *built, char *name)
+t_list  *ft_get_lst_elem(t_list **built, char *name)
 {
-	t_list	*tmp;
-	int		lgt_name;
-	int 	i;
+	t_list  *tmp;
+	int     lgt;
 
-	i = 0;
-	tmp = built;
-	lgt_name = ft_strlen(name);
-	while (tmp->next != NULL)
+	tmp = *built;
+	lgt = ft_strlen(name);
+	while (tmp != NULL)
 	{
-		if (ft_strncmp((char *)tmp->content, name, lgt_name) == 0)
+		if (ft_strncmp((char *)tmp->content, name, lgt) == 0)
 		{
-			if (((char *)tmp->content)[lgt_name] != '=')
-				return (NULL);
-			return ((char *)&tmp->content[lgt_name + 1]);
+			if (((char *)tmp->content)[lgt] == '=')
+				return (tmp);
 		}
 		tmp = tmp->next;
 	}
