@@ -6,21 +6,11 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/04 23:29:40 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/05 19:54:47 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
-
-int		ft_tablen(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i] != NULL)
-		i++;
-	return (i);
-}
 
 char	*ft_join_env(char **tab)
 {
@@ -56,7 +46,7 @@ void	ft_setenv(t_sh **sh, char **tab)
 		ft_lst_putendl((*sh)->envp->built);
 	}
 }
-/*
+
 void	ft_unsetenv(t_sh **sh, char **tab)
 {
 	t_list	*tmp;
@@ -68,10 +58,10 @@ void	ft_unsetenv(t_sh **sh, char **tab)
 		ft_putendl_fd("setenv : too few argument", 2);
 	else
 	{
-		tmp = (*sh)->envp->builtin;
-		ft_lstdel(&(*sh)->envp->built, elem);
+		//tmp = (*sh)->envp->builtin;
+		//ft_lstdel_elem(&(*sh)->envp->built);
 	}
-}*/
+}
 
 int		ft_env(t_sh **sh, char *cmd)
 {
@@ -86,7 +76,8 @@ int		ft_env(t_sh **sh, char *cmd)
 	}
 	if (ft_strcmp(tab[0], "unsetenv") == 0)
 	{
-		//ft_unsetenv(sh, &tab[1]);
+		ft_putendl("hello");
+		ft_unsetenv(sh, &tab[1]);
 		// modify == 1
 		return (1);
 	}

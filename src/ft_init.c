@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 22:42:17 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/04 23:29:49 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/05 19:49:06 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void    ft_init_sh(t_sh **sh, char **envp)
 {
 	t_list *tmp;
 
-	tmp = ft_lst_cpy_envp(envp);
+	tmp = ft_lst_cpy_tab(envp);
 	*sh = (t_sh *)malloc(sizeof(t_sh));
 	(*sh)->process = 1;
 	(*sh)->cmd = NULL;
