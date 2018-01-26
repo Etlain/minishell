@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:06:19 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/29 19:26:03 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/26 13:53:53 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static int	ft_see_word(char *word, char **buf, int *buf_lgt, int *b)
 	int ret;
 
 	i = 0;
-	//ft_putendl(word);
+	ret = 0;
 	while (word[i] != '\0')
 	{
-		if (*buf_lgt == (BUF_ECHO - 1))
+		if (*buf_lgt == (BUF_ECHO))
 			ft_putbuf(buf, buf_lgt);
 		if (word[i] == '"')
 			(*b == 0) ? (*b = 1) : (*b = 0);
@@ -45,7 +45,6 @@ static int	ft_see_word(char *word, char **buf, int *buf_lgt, int *b)
 			(*buf_lgt)++;
 			((*buf)[*buf_lgt] != '\0') ? (i++) : 0;
 		}
-		//ft_printf("ret : %d\n", ret);
 		(ret > 0) ? (i += ret) : (i++);
 	}
 	return (0);
@@ -59,7 +58,7 @@ void	ft_echo(char *cmd)
 	int	buf_lgt;
 	int	b;
 
-	buf = (char *)ft_memalloc(sizeof(char) * BUF_ECHO);
+	buf = (char *)ft_memalloc(sizeof(char) * BUF_ECHO + 1);
 	char *str;
 	str = cmd;
 	//str = "je suis  je suis dans des guillemets    g";
@@ -76,7 +75,7 @@ void	ft_echo(char *cmd)
 		if (tab[j] != NULL)
 		{
 			//ft_putendl(buf);
-			if (buf_lgt == (BUF_ECHO - 1))
+			if (buf_lgt == (BUF_ECHO))
 				ft_putbuf(&buf, &buf_lgt);
 			buf[buf_lgt] = ' ';
 			buf_lgt++;
