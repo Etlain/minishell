@@ -6,13 +6,13 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 20:59:03 by mmouhssi          #+#    #+#             */
-/*   Updated: 2017/12/29 19:25:57 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:29:19 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static char ft_get_c(char ascii, int *i)
+static wchar_t ft_get_c(char ascii, int *i)
 {
 	char c;
 
@@ -21,7 +21,7 @@ static char ft_get_c(char ascii, int *i)
 	return (c);
 }
 
-static int	get_ascii_octal(char *word, int *ret)
+static unsigned char	get_ascii_octal(char *word, int *ret)
 {
 	char	*str;
 	int		i;
@@ -47,9 +47,9 @@ static int	get_ascii_octal(char *word, int *ret)
 	return (nbr);
 }
 
-char	ft_get_ascii(char* word, int b, int *ret)
+wchar_t	ft_get_ascii(char* word, int b, int *ret)
 {
-	char	c;
+	wchar_t	c;
 	int		i;
 
 	//str = "abfnrtv";
@@ -82,7 +82,7 @@ char	ft_get_ascii(char* word, int b, int *ret)
 				*ret = -1;
 				return ('\0');
 			}
-			// nombre octale plus petit ou egale a 0777
+			// nombre octale plus petit ou egale a 0777 // voir mksh shell
 			else if (word[i + 1] == '0')
 			{
 				c = get_ascii_octal(&word[i + 2], ret);

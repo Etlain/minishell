@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/05 21:15:03 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:29:36 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,6 @@ int				ft_bin(t_sh **sh, char *cmd);
 char			**ft_fill_bin_path(t_list *built);
 void			ft_error_cmd(char *cmd);
 int				ft_exec_bin(t_sh **sh, char *path_folder, char *cmd);
-char			ft_get_ascii(char *word, int b, int *ret);
+wchar_t			ft_get_ascii(char *word, int b, int *ret);
 
 #endif

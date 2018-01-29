@@ -6,22 +6,38 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:06:19 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/26 13:53:53 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:29:21 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-# define BUF_ECHO 5
+# define BUF_ECHO 6
 
-static void	ft_putbuf(char **buf, int *buf_lgt)
+void	ft_bwzero(void *s, size_t n)
 {
-	//ft_putendl("see");
-	ft_putstr(*buf); // put buf and bzero and lgt = 0
-	*buf_lgt = 0;
-	ft_bzero(*buf, BUF_ECHO);
+	wchar_t *tab;
+	size_t			i;
+
+	i = 0;
+	tab = (wchar_t*)s;
+	while (i < n)
+	{
+		tab[i] = 0;
+		i++;
+	}
 }
 
-static int	ft_see_word(char *word, char **buf, int *buf_lgt, int *b)
+static void	ft_putbuf(wchar_t **buf, int *buf_lgt)
+{
+
+	//write(1, *buf, *buf_lgt);
+	//ft_putendl("see");
+	ft_putwstr(*buf); // put buf and bzero and lgt = 0
+	*buf_lgt = 0;
+	ft_bwzero(*buf, BUF_ECHO);
+}
+
+static int	ft_see_word(char *word, wchar_t **buf, int *buf_lgt, int *b)
 {
 	int i;
 	int ret;
@@ -30,7 +46,7 @@ static int	ft_see_word(char *word, char **buf, int *buf_lgt, int *b)
 	ret = 0;
 	while (word[i] != '\0')
 	{
-		if (*buf_lgt == (BUF_ECHO))
+		if (*buf_lgt == (BUF_ECHO - 1))
 			ft_putbuf(buf, buf_lgt);
 		if (word[i] == '"')
 			(*b == 0) ? (*b = 1) : (*b = 0);
@@ -53,12 +69,12 @@ static int	ft_see_word(char *word, char **buf, int *buf_lgt, int *b)
 void	ft_echo(char *cmd)
 {
 	char **tab;
-	char *buf;
+	wchar_t *buf;
 	int j;
 	int	buf_lgt;
 	int	b;
 
-	buf = (char *)ft_memalloc(sizeof(char) * BUF_ECHO + 1);
+	buf = (wchar_t *)ft_memalloc(sizeof(wchar_t) * BUF_ECHO);
 	char *str;
 	str = cmd;
 	//str = "je suis  je suis dans des guillemets    g";
@@ -75,9 +91,9 @@ void	ft_echo(char *cmd)
 		if (tab[j] != NULL)
 		{
 			//ft_putendl(buf);
-			if (buf_lgt == (BUF_ECHO))
+			if (buf_lgt == (BUF_ECHO - 1))
 				ft_putbuf(&buf, &buf_lgt);
-			buf[buf_lgt] = ' ';
+			buf[buf_lgt] = L' ';
 			buf_lgt++;
 		}
 	}

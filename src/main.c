@@ -6,11 +6,12 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/04 22:46:29 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/29 15:30:50 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
+#include <locale.h>
 
 int main(int argc, char **argv, char **envp)
 {
@@ -19,6 +20,7 @@ int main(int argc, char **argv, char **envp)
 	int		i;
 	int		b;
 
+	//setlocale (LC_ALL, "");
 	ft_init_sh(&sh, envp);
 	prompt = ft_prompt(sh->envp->built);
 	b = 0;
