@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/29 15:30:50 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/31 17:37:26 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main(int argc, char **argv, char **envp)
 	int		i;
 	int		b;
 
-	//setlocale (LC_ALL, "");
 	ft_init_sh(&sh, envp);
 	prompt = ft_prompt(sh->envp->built);
 	b = 0;
@@ -37,9 +36,7 @@ int main(int argc, char **argv, char **envp)
 			if (b == 0)
 				b = ft_bin(&sh, sh->cmd[i]);
 			if (b == 0)
-			{
 				b = ft_exec_bin(&sh, NULL, sh->cmd[i]);
-			}
 			if (b == -1)
 			{
 				free(prompt);
