@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 20:11:57 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/05 21:59:02 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/01/31 13:03:11 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,26 @@
 void	ft_unsetenv(t_sh **sh, char **tab)
 {
 	t_list	*tmp;
+	t_list  *last;
 	char	*str;
 	int		i;
 
 	i = ft_tablen(tab);
 	if (i < 1)
-		ft_putendl_fd("setenv : too few argument", 2);
+		ft_putendl_fd("unsetenv : too few argument", 2);
 	else
 	{
 		i = 0;
 		while (tab[i] != NULL)
 		{
-			tmp = ft_get_lst_elem(&(*sh)->envp->built, tab[i]);
+			tmp = ft_get_lst_elem_prev(&(*sh)->envp->built, tab[i], &last);
 			if (tmp != NULL)
-				ft_lstdel_elem(&tmp);
+			{
+				if (last != NULL)
+					ft_lstdel_elem(&tmp, &last);
+				else if (tmp != NULL)
+					ft_lstdel_elem(&tmp, NULL); // probleme pointeur non mis a nul dans l element precedent
+			}
 			i++;
 		}
 	}
