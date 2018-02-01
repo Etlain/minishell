@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/04 22:57:25 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/01 18:24:14 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,7 @@ int	ft_bin(t_sh **sh, char *cmd)
 	if (path_folder == NULL)
 		return (0);
 	else
-	{
-		//ft_putendl("welcome in ft bin");
 		ret = ft_exec_bin(sh, path_folder, cmd);
-	}
 	//free(path_folder); ne pas utiliser ce free
 	// free
 	return (ret);
