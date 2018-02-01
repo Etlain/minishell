@@ -6,23 +6,37 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/31 17:49:20 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/01 14:36:47 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
+
+static char 	*ft_get_bin_param(char *cmd)
+{
+	char *str;
+	char *tmp;
+
+	tmp = ft_strtrim(cmd);
+	str = ft_strtrim(&tmp[2]);
+	free(tmp);
+	return (str);
+}
 
 static int		ft_env_exec(t_sh **sh, char **tab, char *cmd)
 {
 	char **tmp;
 	char *str;
 
-	//str = ft_strtrim(cmd);
+	
 	if (ft_strcmp(tab[0], "-i") == 0)
 	{
-		ft_putendl("welcome in -i");
-		/*if (tab[1])
-			ft_bin(sh, tab[1]);*/
+		if (tab[1])
+		{
+			str = ft_get_bin_param(cmd);
+			ft_bin(sh, str);
+			free(str);
+		}
 	}
 	else if (ft_strcmp(tab[0], "-u") == 0)
 		ft_unsetenv(sh, &tab[1]);	
@@ -30,7 +44,7 @@ static int		ft_env_exec(t_sh **sh, char **tab, char *cmd)
 	{
 		tmp = ft_strsplit(tab[0], '=');
 		ft_setenv(sh, tmp);
-		free(tmp);
+		ft_free_tab(tmp);
 	}
 	else
 		return (0);
@@ -62,6 +76,7 @@ int		ft_env(t_sh **sh, char *cmd)
 			ft_lst_putendl((*sh)->envp->built);
 		return (1);
 	}
+	ft_free_tab(tab);
 	//gestion erreur
 	return (0);
 }
