@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/01 17:58:36 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/01 19:36:40 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static char 	*ft_get_bin_param(char *cmd)
 	free(tmp);
 	return (str);
 }
+
 
 static void		ft_env_exec(t_sh **sh, char **tab, char *cmd)
 {
@@ -44,7 +45,7 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd)
 	}
 	else if (ft_strchr(tab[0], '='))
 	{
-		tmp = ft_strsplit(tab[0], '=');
+		tmp = ft_strsplit(tab[0], '='); // corrige le probleme du =
 		ft_setenv(sh, tmp);
 		ft_free_tab(tmp);
 		(*sh)->envp->modif = 1;
