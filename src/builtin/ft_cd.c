@@ -14,26 +14,35 @@
 
 // verifier cd pour ln
 
-void ft_cd_exec(char *path, int b)
+
+static void ft_modif_env(t_sh **sh, char *cmd, char *var)
+{
+	char *str;
+
+	str = ft_strjoin(cmd, var);
+	ft_env(sh, str, 0);
+	free(str);
+}
+
+static void ft_cd_exec(t_sh **sh, char *path, int b)
 {
 	char 	buf[256];
+	char *str;
+	char *tmp;
 
 	ft_bzero(&buf, 256);
 	if (chdir(path) < 0) // modifier pwd
 		ft_putendl_fd("cd : chdir error", 2);
-	if (b == 1)
+	if (getcwd(buf, 256) != NULL)
 	{
-		if (getcwd(buf, 256) == NULL)
-			ft_putendl_fd("cd : getcwd error", 2);
+		if (b)
+			ft_putendl(buf);
+		tmp = ft_get_one_env((*sh)->envp->built, "PWD");
+		ft_modif_env(sh, "setenv OLDPWD ", tmp);
+		ft_modif_env(sh, "setenv PWD ", buf);
 	}
-}
-
-void ft_modif_env(t_sh **sh, char *path)
-{
-	char *str;
-
-	str = ft_strjoin("setenv OLDPWD ", ft_get_one_env((*sh)->envp->built, "PWD"));
-	ft_env(sh, str);
+	else
+		ft_putendl_fd("cd : getcwd error", 2);
 }
 
 void ft_cd(t_sh **sh, char *cmd)
@@ -56,11 +65,9 @@ void ft_cd(t_sh **sh, char *cmd)
 	{
 		b = 1;
 		path = ft_get_one_env((*sh)->envp->built, "OLDPWD");
-		ft_cd_exec(path, 1);
 	}
 	else
 		path = tab[0];
-	ft_cd_exec(path, 0);
-	ft_modif_env(sh);
+	ft_cd_exec(sh, path, b);
 	ft_free_tab(tab);
 }

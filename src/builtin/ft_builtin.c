@@ -30,6 +30,6 @@ int		ft_builtin(t_sh **sh, char *cmd)
 		return (1);
 	}
 	else
-		b = ft_env(sh, cmd);
+		b = ft_env(sh, cmd, 1);
 	return (b);
 }

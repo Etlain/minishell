@@ -35,8 +35,8 @@ typedef struct	s_sh
 
 char			**ft_init_cmd(char *input);
 void			ft_init_sh(t_sh **sh, char **envp);
-int				ft_env(t_sh **sh, char *cmd);
-void			ft_setenv(t_sh **sh, char **tab);
+int				ft_env(t_sh **sh, char *cmd, int print);
+void			ft_setenv(t_sh **sh, char **tab, int print);
 void			ft_unsetenv(t_sh **sh, char **tab);
 void			ft_echo(char *cmd);
 void			ft_cd(t_sh **sh, char *cmd);

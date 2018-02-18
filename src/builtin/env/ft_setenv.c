@@ -27,7 +27,7 @@ static char	*ft_join_env(char **tab)
 	return (tmp);
 }
 
-static void	ft_create_var(t_sh **sh, char **tab)
+static void	ft_create_var(t_sh **sh, char **tab, int print)
 {
 	t_list	*elem;
 	char	*str;
@@ -46,10 +46,11 @@ static void	ft_create_var(t_sh **sh, char **tab)
 		ft_lstaddend(&(*sh)->envp->built, elem);
 		free(str);
 	}
-	ft_lst_putendl((*sh)->envp->built);
+	if (print)
+		ft_lst_putendl((*sh)->envp->built);
 }
 
-void		ft_setenv(t_sh **sh, char **tab)
+void		ft_setenv(t_sh **sh, char **tab, int print)
 {
 	int		i;
 
@@ -61,5 +62,5 @@ void		ft_setenv(t_sh **sh, char **tab)
 	else if (i < 2)
 		ft_lst_putendl((*sh)->envp->built);
 	else
-		ft_create_var(sh, tab);
+		ft_create_var(sh, tab, print);
 }

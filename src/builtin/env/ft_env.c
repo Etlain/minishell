@@ -24,7 +24,7 @@ static char 	*ft_get_bin_param(char *cmd)
 }
 
 
-static void		ft_env_exec(t_sh **sh, char **tab, char *cmd)
+static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 {
 	char **tmp;
 	char *str;
@@ -46,20 +46,20 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd)
 	else if (ft_strchr(tab[0], '='))
 	{
 		tmp = ft_strsplit(tab[0], '='); // corrige le probleme du =
-		ft_setenv(sh, tmp);
+		ft_setenv(sh, tmp, print);
 		ft_free_tab(tmp);
 		(*sh)->envp->modif = 1;
 	}
 }
 
-int		ft_env(t_sh **sh, char *cmd)
+int		ft_env(t_sh **sh, char *cmd, int print)
 {
 	char **tab;
 
 	tab = ft_strsplit(cmd, ' ');
 	if (ft_strcmp(tab[0], "setenv") == 0)
 	{
-		ft_setenv(sh, &tab[1]);
+		ft_setenv(sh, &tab[1], print);
 		(*sh)->envp->modif = 1;
 		return (1);
 	}
@@ -73,7 +73,7 @@ int		ft_env(t_sh **sh, char *cmd)
 	else if (ft_strcmp(tab[0], "env") == 0)
 	{
 		if (tab[1] != NULL)
-			ft_env_exec(sh, &tab[1], &cmd[3]);
+			ft_env_exec(sh, &tab[1], &cmd[3], print);
 		else
 			ft_lst_putendl((*sh)->envp->built);
 		return (1);

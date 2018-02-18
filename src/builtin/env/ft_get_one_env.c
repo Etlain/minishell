@@ -21,7 +21,7 @@ char    *ft_get_one_env(t_list *built, char *name)
 	i = 0;
 	tmp = built;
 	lgt_name = ft_strlen(name);
-	while (tmp->next != NULL)
+	while (tmp != NULL)
 	{
 		if (ft_strncmp((char *)tmp->content, name, lgt_name) == 0)
 		{
