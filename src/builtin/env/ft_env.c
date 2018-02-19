@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/19 16:40:18 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:11:24 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static char		**ft_get_param_equal(char *str)
 		i++;
 	if (str[i] == '=')
 	{
-		tab = (char **)ft_memalloc(3);
-		tab[0] = ft_strnew(i); // ou i - 1 ?
+		tab = (char **)ft_memalloc(sizeof(char *) * 3);
+		tab[0] = ft_strnew(i);
 		ft_strncpy(tab[0], str, i);
 		tab[1] = ft_strnew(lgt - i);
 		ft_strncpy(tab[1], &str[i + 1], lgt);
@@ -92,7 +92,6 @@ int		ft_env(t_sh **sh, char *cmd, int print)
 	}
 	else if (ft_strcmp(tab[0], "unsetenv") == 0)
 	{
-		// probleme si plusieurs egale a cause du strsplit
 		ft_unsetenv(sh, &tab[1]);
 		(*sh)->envp->modif = 1;
 	}
