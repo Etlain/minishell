@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/01 18:24:14 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/19 15:28:17 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ static char	*ft_get_folder_bin(char **tab_folder, char *cmd)
 	return (NULL);
 }
 
-int	ft_bin(t_sh **sh, char *cmd)
+int			ft_bin(t_sh **sh, char *cmd)
 {
-	char *path_folder;
-	int	ret;
+	char 	*path_folder;
+	int		ret;
 
 	ret = 0;
 	path_folder = NULL;

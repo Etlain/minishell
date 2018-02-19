@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/16 16:30:55 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/19 16:40:18 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,33 @@ static char 	*ft_get_bin_param(char *cmd)
 	return (str);
 }
 
+static char		**ft_get_param_equal(char *str)
+{
+	char	**tab;
+	char 	*val;
+	int 	i;
+	int		j;
+	int 	lgt;
+
+	lgt = ft_strlen(str);
+	if (str == NULL || lgt < 2 || str[0] == '=')
+		return (NULL);
+	i = 0;
+	while (i < lgt && str[i] != '=')
+		i++;
+	if (str[i] == '=')
+	{
+		tab = (char **)ft_memalloc(3);
+		tab[0] = ft_strnew(i); // ou i - 1 ?
+		ft_strncpy(tab[0], str, i);
+		tab[1] = ft_strnew(lgt - i);
+		ft_strncpy(tab[1], &str[i + 1], lgt);
+		tab[2] = NULL;
+	}
+	else
+		tab = NULL;
+	return (tab);
+}
 
 static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 {
@@ -45,7 +72,8 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 	}
 	else if (ft_strchr(tab[0], '='))
 	{
-		tmp = ft_strsplit(tab[0], '='); // corrige le probleme du =
+		if (!(tmp = ft_get_param_equal(tab[0])))
+			return ;
 		ft_setenv(sh, tmp, print);
 		ft_free_tab(tmp);
 		(*sh)->envp->modif = 1;
@@ -54,21 +82,19 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 
 int		ft_env(t_sh **sh, char *cmd, int print)
 {
-	char **tab;
+	char 	**tab;
 
 	tab = ft_strsplit(cmd, ' ');
 	if (ft_strcmp(tab[0], "setenv") == 0)
 	{
 		ft_setenv(sh, &tab[1], print);
 		(*sh)->envp->modif = 1;
-		return (1);
 	}
-	if (ft_strcmp(tab[0], "unsetenv") == 0)
+	else if (ft_strcmp(tab[0], "unsetenv") == 0)
 	{
 		// probleme si plusieurs egale a cause du strsplit
 		ft_unsetenv(sh, &tab[1]);
 		(*sh)->envp->modif = 1;
-		return (1);
 	}
 	else if (ft_strcmp(tab[0], "env") == 0)
 	{
@@ -76,9 +102,12 @@ int		ft_env(t_sh **sh, char *cmd, int print)
 			ft_env_exec(sh, &tab[1], &cmd[3], print);
 		else
 			ft_lst_putendl((*sh)->envp->built);
-		return (1);
+	}
+	else
+	{
+		ft_free_tab(tab);
+		return (0);
 	}
 	ft_free_tab(tab);
-	//gestion erreur
-	return (0);
+	return (1);
 }
