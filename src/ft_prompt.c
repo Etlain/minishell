@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 17:50:27 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/02 18:31:57 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/02/19 17:13:11 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_prompt(t_list *built)
 	char *tmp;
 	char *prompt;
 
-	tmp = ft_get_one_env(built, "USER"); // PWD
+	tmp = ft_get_one_env(built, "USER");
 	if (tmp != NULL)
 		prompt = ft_strjoin(tmp, "$> ");
 	else
