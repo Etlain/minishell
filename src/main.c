@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/31 17:37:26 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/02 19:34:15 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int main(int argc, char **argv, char **envp)
 				b = ft_builtin(&sh, sh->cmd[i]);
 			if (b == 0)
 				b = ft_bin(&sh, sh->cmd[i]);
-			if (b == 0)
-				b = ft_exec_bin(&sh, NULL, sh->cmd[i]);
+	/*		if (b == 0)
+				b = ft_exec_bin(&sh, NULL, sh->cmd[i]);*/
 			if (b == -1)
 			{
 				free(prompt);

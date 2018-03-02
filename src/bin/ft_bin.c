@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/19 15:28:17 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/02 21:16:23 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,23 @@ int			ft_bin(t_sh **sh, char *cmd)
 
 	ret = 0;
 	path_folder = NULL;
-	path_folder = ft_get_folder_bin((*sh)->envp->bin_path, cmd);
-	if (path_folder == NULL)
-		return (0);
-	else
+	// ./
+	//ft_putendl("you re welcome");
+	if (ft_strncmp(cmd, "./", 2) == 0)
+	{
+		ft_putendl("you re welcome");
 		ret = ft_exec_bin(sh, path_folder, cmd);
-	//free(path_folder); ne pas utiliser ce free
-	// free
+	}
+	else
+	{
+		path_folder = ft_get_folder_bin((*sh)->envp->bin_path, cmd);
+		ft_putendl(path_folder);
+		if (path_folder == NULL)
+			return (0);
+		else
+			ret = ft_exec_bin(sh, path_folder, cmd);
+		//free(path_folder); ne pas utiliser ce free
+		// free
+	}
 	return (ret);
 }
