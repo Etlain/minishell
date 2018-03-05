@@ -24,6 +24,7 @@ SRC = 	builtin/ft_builtin.c			\
 		builtin/env/ft_get_lst_elem.c	\
 		builtin/env/ft_get_one_env.c	\
 		ft_init.c						\
+		ft_free_all.c					\
 		ft_prompt.c						\
 		bin/ft_bin.c					\
 		bin/ft_exec_bin.c				\

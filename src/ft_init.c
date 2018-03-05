@@ -6,17 +6,17 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 22:42:17 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/31 17:21:48 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 12:57:53 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
 
-char **ft_init_cmd(char *input)
+char	**ft_init_cmd(char *input)
 {
-	char **cmd;
-	char *tmp;
-	int     i;
+	char	**cmd;
+	char	*tmp;
+	int		i;
 
 	cmd = ft_strsplit(input, ';');
 	free(input);
@@ -31,7 +31,7 @@ char **ft_init_cmd(char *input)
 	return (cmd);
 }
 
-void    ft_init_sh(t_sh **sh, char **envp)
+void	ft_init_sh(t_sh **sh, char **envp)
 {
 	t_list *tmp;
 

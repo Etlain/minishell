@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 20:08:48 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/19 17:13:28 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:20:38 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*ft_join_env(char **tab)
 {
-	char 	*tmp;
+	char	*tmp;
 	char	*str;
 
 	tmp = ft_strjoin(tab[0], "=");
@@ -55,7 +55,7 @@ void		ft_setenv(t_sh **sh, char **tab, int print)
 	int		i;
 
 	if (!sh || !tab)
-		return;
+		return ;
 	i = ft_tablen(tab);
 	if (i > 2)
 		ft_putendl_fd("setenv : too much argument", 2);

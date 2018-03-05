@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:06:19 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/29 15:29:21 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 20:37:43 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	ft_bwzero(void *s, size_t n)
 
 static void	ft_putbuf(wchar_t **buf, int *buf_lgt)
 {
-
-	//write(1, *buf, *buf_lgt);
-	//ft_putendl("see");
-	ft_putwstr(*buf); // put buf and bzero and lgt = 0
+	ft_putwstr(*buf);
 	*buf_lgt = 0;
 	ft_bwzero(*buf, BUF_ECHO);
 }
@@ -75,11 +72,7 @@ void	ft_echo(char *cmd)
 	int	b;
 
 	buf = (wchar_t *)ft_memalloc(sizeof(wchar_t) * BUF_ECHO);
-	char *str;
-	str = cmd;
-	//str = "je suis  je suis dans des guillemets    g";
-	tab = ft_strsplit(str, ' '); //remplacer par cmd
-	//ft_putendl_tab(tab);
+	tab = ft_strsplit(cmd, ' ');
 	buf_lgt = 0;
 	j = 0;
 	b = 0;
@@ -90,19 +83,15 @@ void	ft_echo(char *cmd)
 		j++;
 		if (tab[j] != NULL)
 		{
-			//ft_putendl(buf);
 			if (buf_lgt == (BUF_ECHO - 1))
 				ft_putbuf(&buf, &buf_lgt);
 			buf[buf_lgt] = L' ';
 			buf_lgt++;
 		}
 	}
-	//ft_printf("tets :%d\n", buf_lgt);
 	if (buf_lgt > 0)
 		ft_putbuf(&buf, &buf_lgt);
 	ft_putchar('\n'); // recuperer ret -1 de ft see word
-	// guillemet
-	//ft_putendl(cmd);
 	free(buf);
 	ft_free_tab(tab);
 }

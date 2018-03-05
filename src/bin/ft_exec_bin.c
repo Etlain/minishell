@@ -6,13 +6,33 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 15:51:26 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/01 18:24:08 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 16:30:57 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_exec_bin(t_sh **sh, char *path_folder, char *cmd)
+static void	ft_execve_bin(t_sh **sh, char **tab_cmd, char *folder, char *cmd)
+{
+	char	*path;
+	int		ret;
+
+	ret = 0;
+	if (ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
+	{
+		if (folder)
+		{
+			path = ft_strjoin_path(folder, tab_cmd[0]);
+			ret = execve(path, &tab_cmd[0], (*sh)->envp->bin);
+		}
+		else
+			ret = execve(tab_cmd[0], &tab_cmd[0], (*sh)->envp->bin);
+		if (ret < 0)
+			ft_error_cmd(cmd);
+	}
+}
+
+int			ft_exec_bin(t_sh **sh, char *path_folder, char *cmd)
 {
 	char	**tab_cmd;
 	char	*path;
@@ -28,19 +48,7 @@ int	ft_exec_bin(t_sh **sh, char *path_folder, char *cmd)
 	(*sh)->process = fork();
 	if ((*sh)->process == 0)
 	{
-		if (ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
-		{
-			if (path_folder)
-			{
-				path = ft_strjoin_path(path_folder, tab_cmd[0]);
-				ret = execve(path, &tab_cmd[0], (*sh)->envp->bin);
-			}
-			else
-				ret = execve(tab_cmd[0], &tab_cmd[0], (*sh)->envp->bin);
-			// sh : exec format error : ./t
-			if (ret < 0)
-				ft_error_cmd(cmd);
-		}
+		ft_execve_bin(sh, tab_cmd, path_folder, cmd);
 		ft_free_tab(tab_cmd);
 		exit(0);
 	}

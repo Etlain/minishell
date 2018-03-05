@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 20:11:57 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/19 15:57:29 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:20:53 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_unsetenv(t_sh **sh, char **tab)
 {
 	t_list	*tmp;
-	t_list  *last;
+	t_list	*last;
 	char	*str;
 	int		i;
 

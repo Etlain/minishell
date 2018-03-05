@@ -6,17 +6,17 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/08 17:05:56 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/05 21:15:24 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:19:29 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-char    *ft_get_one_env(t_list *built, char *name)
+char	*ft_get_one_env(t_list *built, char *name)
 {
 	t_list	*tmp;
 	int		lgt_name;
-	int 	i;
+	int		i;
 
 	i = 0;
 	tmp = built;

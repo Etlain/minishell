@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/02 21:16:23 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 13:07:45 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@ char		**ft_fill_bin_path(t_list *built)
 	char **bin_path;
 
 	bin_path = ft_strsplit(ft_get_one_env(built, "PATH"), ':');
-	//ft_putendl_tab(bin_path);
 	return (bin_path);
 }
 
 static int	ft_is_folder_cmd(char *folder, char *cmd)
 {
-	struct dirent 	*file;
+	struct dirent	*file;
 	void			*dir;
 
 	if (folder == NULL)
@@ -57,18 +56,13 @@ static char	*ft_get_folder_bin(char **tab_folder, char *cmd)
 
 int			ft_bin(t_sh **sh, char *cmd)
 {
-	char 	*path_folder;
+	char	*path_folder;
 	int		ret;
 
 	ret = 0;
 	path_folder = NULL;
-	// ./
-	//ft_putendl("you re welcome");
 	if (ft_strncmp(cmd, "./", 2) == 0)
-	{
-		ft_putendl("you re welcome");
 		ret = ft_exec_bin(sh, path_folder, cmd);
-	}
 	else
 	{
 		path_folder = ft_get_folder_bin((*sh)->envp->bin_path, cmd);
@@ -77,8 +71,6 @@ int			ft_bin(t_sh **sh, char *cmd)
 			return (0);
 		else
 			ret = ft_exec_bin(sh, path_folder, cmd);
-		//free(path_folder); ne pas utiliser ce free
-		// free
 	}
 	return (ret);
 }

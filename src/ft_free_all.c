@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_builtin.c                                       :+:      :+:    :+:   */
+/*   ft_free_all.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/12/08 14:43:46 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 17:23:25 by mmouhssi         ###   ########.fr       */
+/*   Created: 2018/03/05 11:33:14 by mmouhssi          #+#    #+#             */
+/*   Updated: 2018/03/05 12:58:40 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/minishell.h"
+#include "../includes/minishell.h"
 
-int		ft_builtin(t_sh **sh, char *cmd)
+static void	ft_free_lst(void *elem, size_t size)
 {
-	int	b;
+	free(elem);
+}
 
-	b = 0;
-	if (ft_strncmp(cmd, "exit", 4) == 0)
-		return (-1);
-	else if (ft_strncmp(cmd, "echo", 4) == 0)
-	{
-		ft_echo(&cmd[4]);
-		return (1);
-	}
-	else if (ft_strncmp(cmd, "cd", 2) == 0)
-	{
-		ft_cd(sh, &cmd[2]);
-		return (1);
-	}
-	else
-		b = ft_env(sh, cmd, 1);
-	return (b);
+void		ft_free_sh(t_sh **sh)
+{
+	ft_free_tab((*sh)->envp->bin_path);
+	ft_free_tab((*sh)->envp->bin);
+	ft_lstdel(&(*sh)->envp->built, ft_free_lst);
+	free((*sh)->envp);
+	ft_free_tab((*sh)->cmd);
+	free(*sh);
 }

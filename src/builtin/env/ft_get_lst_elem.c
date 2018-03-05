@@ -6,16 +6,16 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 21:11:48 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/01/31 13:06:18 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:18:59 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-t_list  *ft_get_lst_elem(t_list **built, char *name)
+t_list	*ft_get_lst_elem(t_list **built, char *name)
 {
-	t_list  *tmp;
-	int     lgt;
+	t_list	*tmp;
+	int		lgt;
 
 	tmp = *built;
 	lgt = ft_strlen(name);
@@ -31,10 +31,10 @@ t_list  *ft_get_lst_elem(t_list **built, char *name)
 	return (NULL);
 }
 
-t_list  *ft_get_lst_elem_prev(t_list **built, char *name, t_list **last)
+t_list	*ft_get_lst_elem_prev(t_list **built, char *name, t_list **last)
 {
-	t_list  *tmp;
-	int     lgt;
+	t_list	*tmp;
+	int		lgt;
 
 	tmp = *built;
 	*last = NULL;

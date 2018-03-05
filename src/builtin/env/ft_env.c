@@ -6,16 +6,16 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/02/19 17:11:24 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/05 17:17:53 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
-static char 	*ft_get_bin_param(char *cmd)
+static char		*ft_get_bin_param(char *cmd)
 {
-	char *str;
-	char *tmp;
+	char	*str;
+	char	*tmp;
 
 	tmp = ft_strtrim(cmd);
 	str = ft_strtrim(&tmp[2]);
@@ -26,10 +26,10 @@ static char 	*ft_get_bin_param(char *cmd)
 static char		**ft_get_param_equal(char *str)
 {
 	char	**tab;
-	char 	*val;
-	int 	i;
+	char	*val;
+	int		i;
 	int		j;
-	int 	lgt;
+	int		lgt;
 
 	lgt = ft_strlen(str);
 	if (str == NULL || lgt < 2 || str[0] == '=')
@@ -51,10 +51,16 @@ static char		**ft_get_param_equal(char *str)
 	return (tab);
 }
 
+static void		ft_unsetenv_exec(t_sh **sh, char **tab)
+{
+	ft_unsetenv(sh, &tab[1]);
+	(*sh)->envp->modif = 1;
+}
+
 static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 {
-	char **tmp;
-	char *str;
+	char	**tmp;
+	char	*str;
 
 	if (ft_strcmp(tab[0], "-i") == 0)
 	{
@@ -66,10 +72,7 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 		}
 	}
 	else if (ft_strcmp(tab[0], "-u") == 0)
-	{
-		ft_unsetenv(sh, &tab[1]);
-		(*sh)->envp->modif = 1;
-	}
+		ft_unsetenv_exec(sh, tab);
 	else if (ft_strchr(tab[0], '='))
 	{
 		if (!(tmp = ft_get_param_equal(tab[0])))
@@ -80,9 +83,9 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 	}
 }
 
-int		ft_env(t_sh **sh, char *cmd, int print)
+int				ft_env(t_sh **sh, char *cmd, int print)
 {
-	char 	**tab;
+	char	**tab;
 
 	tab = ft_strsplit(cmd, ' ');
 	if (ft_strcmp(tab[0], "setenv") == 0)
@@ -91,10 +94,7 @@ int		ft_env(t_sh **sh, char *cmd, int print)
 		(*sh)->envp->modif = 1;
 	}
 	else if (ft_strcmp(tab[0], "unsetenv") == 0)
-	{
-		ft_unsetenv(sh, &tab[1]);
-		(*sh)->envp->modif = 1;
-	}
+		ft_unsetenv_exec(sh, tab);
 	else if (ft_strcmp(tab[0], "env") == 0)
 	{
 		if (tab[1] != NULL)
