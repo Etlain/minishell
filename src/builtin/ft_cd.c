@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:18:28 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 17:24:45 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 09:49:48 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ static void	ft_modif_env(t_sh **sh, char *cmd, char *var)
 static void	ft_cd_exec(t_sh **sh, char *path, int b)
 {
 	char	buf[256];
-	char	*str;
 	char	*tmp;
 
 	ft_bzero(&buf, 256);
-	if (chdir(path) < 0) // modifier pwd
+	if (chdir(path) < 0)
 		ft_putendl_fd("cd : chdir error", 2);
 	if (getcwd(buf, 256) != NULL)
 	{

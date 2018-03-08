@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 15:51:26 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 16:30:57 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 09:36:17 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static void	ft_execve_bin(t_sh **sh, char **tab_cmd, char *folder, char *cmd)
 int			ft_exec_bin(t_sh **sh, char *path_folder, char *cmd)
 {
 	char	**tab_cmd;
-	char	*path;
-	int		ret;
 
 	if ((*sh)->envp->modif)
 	{

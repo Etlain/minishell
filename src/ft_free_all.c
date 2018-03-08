@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/05 11:33:14 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 12:58:40 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 09:37:05 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	ft_free_lst(void *elem, size_t size)
 {
+	if (size)
+		;
 	free(elem);
 }
 

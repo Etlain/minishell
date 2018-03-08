@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 17:17:53 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 09:48:21 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ static char		*ft_get_bin_param(char *cmd)
 static char		**ft_get_param_equal(char *str)
 {
 	char	**tab;
-	char	*val;
 	int		i;
-	int		j;
 	int		lgt;
 
 	lgt = ft_strlen(str);

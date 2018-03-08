@@ -6,32 +6,26 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:06:19 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 20:37:43 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 13:20:43 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-# define BUF_ECHO 6
-
-void	ft_bwzero(void *s, size_t n)
-{
-	wchar_t *tab;
-	size_t			i;
-
-	i = 0;
-	tab = (wchar_t*)s;
-	while (i < n)
-	{
-		tab[i] = 0;
-		i++;
-	}
-}
+#define BUF_ECHO 6
 
 static void	ft_putbuf(wchar_t **buf, int *buf_lgt)
 {
 	ft_putwstr(*buf);
 	*buf_lgt = 0;
 	ft_bwzero(*buf, BUF_ECHO);
+}
+
+static void	ft_b_quote(int *b)
+{
+	if (*b == 0)
+		*b = 1;
+	else if (*b == 1)
+		*b = 0;
 }
 
 static int	ft_see_word(char *word, wchar_t **buf, int *buf_lgt, int *b)
@@ -46,7 +40,7 @@ static int	ft_see_word(char *word, wchar_t **buf, int *buf_lgt, int *b)
 		if (*buf_lgt == (BUF_ECHO - 1))
 			ft_putbuf(buf, buf_lgt);
 		if (word[i] == '"')
-			(*b == 0) ? (*b = 1) : (*b = 0);
+			ft_b_quote(b);
 		else
 		{
 			if (*b == 0 && word[i] == '\\')
@@ -63,13 +57,24 @@ static int	ft_see_word(char *word, wchar_t **buf, int *buf_lgt, int *b)
 	return (0);
 }
 
-void	ft_echo(char *cmd)
+static void	ft_echo_next_arg(char *arg, wchar_t *buf, int *buf_lgt)
 {
-	char **tab;
+	if (arg != NULL)
+	{
+		if (*buf_lgt == (BUF_ECHO - 1))
+			ft_putbuf(&buf, buf_lgt);
+		buf[*buf_lgt] = L' ';
+		(*buf_lgt)++;
+	}
+}
+
+void		ft_echo(char *cmd)
+{
+	char	**tab;
 	wchar_t *buf;
-	int j;
-	int	buf_lgt;
-	int	b;
+	int		j;
+	int		buf_lgt;
+	int		b;
 
 	buf = (wchar_t *)ft_memalloc(sizeof(wchar_t) * BUF_ECHO);
 	tab = ft_strsplit(cmd, ' ');
@@ -79,19 +84,13 @@ void	ft_echo(char *cmd)
 	while (tab[j] != NULL)
 	{
 		if (ft_see_word(tab[j], &buf, &buf_lgt, &b) == -1)
-			break;
+			break ;
 		j++;
-		if (tab[j] != NULL)
-		{
-			if (buf_lgt == (BUF_ECHO - 1))
-				ft_putbuf(&buf, &buf_lgt);
-			buf[buf_lgt] = L' ';
-			buf_lgt++;
-		}
+		ft_echo_next_arg(tab[j], buf, &buf_lgt);
 	}
 	if (buf_lgt > 0)
 		ft_putbuf(&buf, &buf_lgt);
-	ft_putchar('\n'); // recuperer ret -1 de ft see word
+	ft_putchar('\n');
 	free(buf);
 	ft_free_tab(tab);
 }

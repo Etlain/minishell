@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 12:56:26 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 09:35:38 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_send_cmd(t_sh **sh, char *prompt)
 		{
 			free(prompt);
 			ft_free_sh(sh);
-			exit(0); // valeur de retour voir wait
+			exit(0);
 		}
 		b = 0;
 		i++;
@@ -41,9 +41,9 @@ int			main(int argc, char **argv, char **envp)
 {
 	t_sh	*sh;
 	char	*prompt;
-	int		i;
-	int		b;
 
+	if (argv && argc)
+		;
 	ft_init_sh(&sh, envp);
 	prompt = ft_prompt(sh->envp->built);
 	while (1)
