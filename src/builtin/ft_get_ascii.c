@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 20:59:03 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 14:03:10 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 14:09:58 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ wchar_t					ft_get_ascii(char* word, int b, int *ret)
 	{
 		if (word[i + 1] != '\0')
 		{	
-			if ((tmp = ft_get_ascii_1(word, c, i)) != 0)
+			if ((tmp = ft_get_ascii_1(word, c, i, ret)) != 0)
 				c = tmp;
 			// nombre octale plus petit ou egale a 0777 // voir mksh shell
 			else if (word[i + 1] == '0')

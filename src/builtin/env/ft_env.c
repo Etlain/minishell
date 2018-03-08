@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 09:48:21 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/08 17:10:48 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,14 @@ int				ft_env(t_sh **sh, char *cmd, int print)
 	char	**tab;
 
 	tab = ft_strsplit(cmd, ' ');
-	if (ft_strcmp(tab[0], "setenv") == 0)
+	if (tab && tab[0] && tab[1] && ft_strcmp(tab[0], "setenv") == 0)
 	{
 		ft_setenv(sh, &tab[1], print);
 		(*sh)->envp->modif = 1;
 	}
-	else if (ft_strcmp(tab[0], "unsetenv") == 0)
+	else if (tab && tab[0] && ft_strcmp(tab[0], "unsetenv") == 0)
 		ft_unsetenv_exec(sh, tab);
-	else if (ft_strcmp(tab[0], "env") == 0)
+	else if (tab && tab[0] && ft_strcmp(tab[0], "env") == 0)
 	{
 		if (tab[1] != NULL)
 			ft_env_exec(sh, &tab[1], &cmd[3], print);
