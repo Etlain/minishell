@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 13:36:43 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 14:54:59 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			ft_bin(t_sh **sh, char *cmd)
 		ft_free_tab((*sh)->envp->bin_path);
 		(*sh)->envp->bin_path = ft_fill_bin_path((*sh)->envp->built);
 		(*sh)->envp->modif = 0;
-	} 
+	}
 	if (ft_strncmp(cmd, "./", 2) == 0)
 		ret = ft_exec_bin(sh, path_folder, cmd);
 	else

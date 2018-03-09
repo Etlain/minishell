@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 21:06:19 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 13:20:43 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:42:10 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,14 @@ static void	ft_echo_next_arg(char *arg, wchar_t *buf, int *buf_lgt)
 	}
 }
 
-void		ft_echo(char *cmd)
+void		ft_echo(char **tab)
 {
-	char	**tab;
 	wchar_t *buf;
 	int		j;
 	int		buf_lgt;
 	int		b;
 
 	buf = (wchar_t *)ft_memalloc(sizeof(wchar_t) * BUF_ECHO);
-	tab = ft_strsplit(cmd, ' ');
 	buf_lgt = 0;
 	j = 0;
 	b = 0;
@@ -92,5 +90,4 @@ void		ft_echo(char *cmd)
 		ft_putbuf(&buf, &buf_lgt);
 	ft_putchar('\n');
 	free(buf);
-	ft_free_tab(tab);
 }

@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/05 17:17:06 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 11:44:52 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 15:38:30 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void			ft_init_sh(t_sh **sh, char **envp);
 int				ft_env(t_sh **sh, char *cmd, int print);
 void			ft_setenv(t_sh **sh, char **tab, int print);
 void			ft_unsetenv(t_sh **sh, char **tab);
-void			ft_echo(char *cmd);
-void			ft_cd(t_sh **sh, char *cmd);
+void			ft_echo(char **tab);
+void			ft_cd(t_sh **sh, char **tab);
 char			*ft_get_one_env(t_list *built, char *name);
 t_list			*ft_get_lst_elem(t_list **built, char *name);
 t_list			*ft_get_lst_elem_prev(t_list **built, char *name, t_list **last);

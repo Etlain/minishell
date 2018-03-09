@@ -6,13 +6,11 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:18:28 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 09:49:48 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:20:54 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-// verifier cd pour ln
 
 static void	ft_modif_env(t_sh **sh, char *cmd, char *var)
 {
@@ -43,29 +41,27 @@ static void	ft_cd_exec(t_sh **sh, char *path, int b)
 		ft_putendl_fd("cd : getcwd error", 2);
 }
 
-void		ft_cd(t_sh **sh, char *cmd)
+void		ft_cd(t_sh **sh, char **tab)
 {
-	char 	**tab;
 	char	*path;
 	int		lgt_tab;
 	int		b;
 
 	b = 0;
-	tab = ft_strsplit(cmd, ' ');
 	lgt_tab = ft_tablen(tab);
-	// cd home si pas param
 	if (lgt_tab > 1)
 	{
 		ft_putendl_fd("cd : too much param", 2);
 		return ;
 	}
-	if (ft_strcmp(tab[0], "-") == 0)
+	if (tab[0] && ft_strcmp(tab[0], "-") == 0)
 	{
 		b = 1;
 		path = ft_get_one_env((*sh)->envp->built, "OLDPWD");
 	}
 	else
 		path = tab[0];
+	if (!path)
+		path = ft_get_one_env((*sh)->envp->built, "HOME");
 	ft_cd_exec(sh, path, b);
-	ft_free_tab(tab);
 }
