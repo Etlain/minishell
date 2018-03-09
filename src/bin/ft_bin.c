@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 17:53:51 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 13:36:43 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ static char	*ft_get_folder_bin(char **tab_folder, char *cmd)
 	int i;
 
 	i = 0;
+	if (!tab_folder)
+		return (NULL);
 	while (tab_folder[i] != NULL)
 	{
 		if (ft_is_folder_cmd(tab_folder[i], cmd))
@@ -61,6 +63,14 @@ int			ft_bin(t_sh **sh, char *cmd)
 
 	ret = 0;
 	path_folder = NULL;
+	if ((*sh)->envp->modif)
+	{
+		ft_free_tab((*sh)->envp->bin);
+		(*sh)->envp->bin = ft_lst_to_tab((*sh)->envp->built);
+		ft_free_tab((*sh)->envp->bin_path);
+		(*sh)->envp->bin_path = ft_fill_bin_path((*sh)->envp->built);
+		(*sh)->envp->modif = 0;
+	} 
 	if (ft_strncmp(cmd, "./", 2) == 0)
 		ret = ft_exec_bin(sh, path_folder, cmd);
 	else

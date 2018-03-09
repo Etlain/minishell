@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 15:51:26 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 09:36:17 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 13:41:03 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ int			ft_exec_bin(t_sh **sh, char *path_folder, char *cmd)
 {
 	char	**tab_cmd;
 
-	if ((*sh)->envp->modif)
-	{
-		ft_free_tab((*sh)->envp->bin);
-		(*sh)->envp->bin = ft_lst_to_tab((*sh)->envp->built);
-		(*sh)->envp->modif = 0;
-	}
 	tab_cmd = ft_strsplit(cmd, ' ');
 	(*sh)->process = fork();
 	if ((*sh)->process == 0)
