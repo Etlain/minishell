@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 20:59:03 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 16:21:26 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/09 16:45:20 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ static unsigned char	get_ascii_octal(char *word, int *ret)
 	return (nbr);
 }
 
-static wchar_t			ft_get_ascii_1(char *word, wchar_t c, int i, int *ret)
+static wchar_t			ft_get_ascii_1(char *word, int i, int *ret)
 {
-	// cas 1 abfnrtv envoyer ascii de la chaine plus
 	if (word[i + 1] == 'a')
 		return (ft_get_c('\a', &i));
 	else if (word[i + 1] == 'b')
@@ -65,7 +64,6 @@ static wchar_t			ft_get_ascii_1(char *word, wchar_t c, int i, int *ret)
 		return (ft_get_c('\v', &i));
 	else if (word[i + 1] == '\\')
 		return (ft_get_c('\\', &i));
-	// c (on ignore la suite de la chaine y compris les \n de fin)	
 	else if (word[i + 1] == 'c')
 	{
 		*ret = -1;
@@ -74,7 +72,7 @@ static wchar_t			ft_get_ascii_1(char *word, wchar_t c, int i, int *ret)
 	return (0);
 }
 
-wchar_t					ft_get_ascii(char* word, int b, int *ret)
+wchar_t					ft_get_ascii(char *word, int b, int *ret)
 {
 	wchar_t	c;
 	wchar_t	tmp;
@@ -85,10 +83,9 @@ wchar_t					ft_get_ascii(char* word, int b, int *ret)
 	if (b == 1 && word[i] == '\\')
 	{
 		if (word[i + 1] != '\0')
-		{	
-			if ((tmp = ft_get_ascii_1(word, c, i, ret)) != 0)
+		{
+			if ((tmp = ft_get_ascii_1(word, i, ret)) != 0)
 				c = tmp;
-			// nombre octale plus petit ou egale a 0777 // voir mksh shell
 			else if (word[i + 1] == '0')
 			{
 				c = get_ascii_octal(&word[i + 2], ret);

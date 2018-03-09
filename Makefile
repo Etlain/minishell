@@ -33,7 +33,7 @@ SRC = 	builtin/ft_builtin.c			\
 
 PATH_SRC = src/
 
-FLAGS =
+FLAGS = -Wall -Werror -Wextra
 
 LIBFT = -C lib/libft/
 
