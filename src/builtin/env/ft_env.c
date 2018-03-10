@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 18:51:42 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/08 17:10:48 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/10 16:23:13 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void		ft_env_exec(t_sh **sh, char **tab, char *cmd, int print)
 	char	**tmp;
 	char	*str;
 
-	if (ft_strcmp(tab[0], "-i") == 0)
+	// pas fonctionnelle utiliser no env dans la struct, cas particulier execution minishell
+	if (ft_strcmp(tab[0], "-i") == 0) 
 	{
 		if (tab[1])
 		{

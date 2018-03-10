@@ -6,11 +6,14 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:18:28 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 16:20:54 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/10 17:15:13 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+// dans le cas des dossier lien symbolique, se servir du OLDPWD (env)
+// pour faire le cd POSIX
 
 static void	ft_modif_env(t_sh **sh, char *cmd, char *var)
 {
