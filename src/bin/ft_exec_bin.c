@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/15 15:51:26 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 13:41:03 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/12 20:50:29 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,27 @@ static void	ft_execve_bin(t_sh **sh, char **tab_cmd, char *folder, char *cmd)
 	int		ret;
 
 	ret = 0;
-	if (ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
+	if (tab_cmd && tab_cmd[0] && 
+			ft_strncmp(cmd, tab_cmd[0], ft_strlen(tab_cmd[0])) == 0)
 	{
 		if (folder)
 		{
 			path = ft_strjoin_path(folder, tab_cmd[0]);
-			ret = execve(path, &tab_cmd[0], (*sh)->envp->bin);
+			if ((*sh)->envp->no_env)
+			{
+				ret = execve(path, &tab_cmd[0], NULL);
+				(*sh)->envp->no_env = 0;
+			}
+			else
+			{
+				if ((*sh)->envp->no_env)
+				{
+					ret = execve(path, &tab_cmd[0], NULL);
+					(*sh)->envp->no_env = 0;
+				}
+				else
+					ret = execve(path, &tab_cmd[0], (*sh)->envp->bin);
+			}
 		}
 		else
 			ret = execve(tab_cmd[0], &tab_cmd[0], (*sh)->envp->bin);

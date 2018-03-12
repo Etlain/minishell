@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/09 11:06:13 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 14:54:59 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/12 20:50:57 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	ft_is_folder_cmd(char *folder, char *cmd)
 
 	if (folder == NULL)
 		return (0);
-	dir = opendir(folder);
+	if (!(dir = opendir(folder)))
+		return (0);
 	while ((file = readdir(dir)) != NULL)
 	{
 		if (ft_strncmp(cmd, file->d_name, ft_strlen(file->d_name)) == 0)

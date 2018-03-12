@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/07 15:18:28 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/10 17:15:13 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/12 14:37:54 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,19 @@ void		ft_cd(t_sh **sh, char **tab)
 	int		b;
 
 	b = 0;
+	path = NULL;
 	lgt_tab = ft_tablen(tab);
 	if (lgt_tab > 1)
 	{
 		ft_putendl_fd("cd : too much param", 2);
 		return ;
 	}
-	if (tab[0] && ft_strcmp(tab[0], "-") == 0)
+	if (tab && tab[0] && ft_strcmp(tab[0], "-") == 0)
 	{
 		b = 1;
 		path = ft_get_one_env((*sh)->envp->built, "OLDPWD");
 	}
-	else
+	else if (tab)
 		path = tab[0];
 	if (!path)
 		path = ft_get_one_env((*sh)->envp->built, "HOME");

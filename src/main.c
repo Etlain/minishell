@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/26 12:55:18 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 13:41:00 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/12 22:35:21 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int			main(int argc, char **argv, char **envp)
 {
 	t_sh	*sh;
 	char	*prompt;
+	char	*input;
 
 	if (argv && argc)
 		;
@@ -50,9 +51,14 @@ int			main(int argc, char **argv, char **envp)
 	{
 		if (sh->process != 0)
 			ft_putstr(prompt);
-		sh->cmd = ft_init_cmd(ft_get_input());
-		ft_send_cmd(&sh, prompt);
-		ft_free_tab(sh->cmd);
+		if ((input = ft_get_input()))
+		{
+			sh->cmd = ft_init_cmd(input);
+			ft_send_cmd(&sh, prompt);
+			ft_free_tab(sh->cmd);
+		}
+		else
+			return (0);
 	}
 	return (0);
 }

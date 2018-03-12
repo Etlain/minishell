@@ -37,7 +37,7 @@ SRC = $(addprefix $(PATH_SRC), $(NAME_SRC))
 
 OBJ = $(SRC:.c=.o)
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = 
 
 LIBFT = -C lib/libft/
 

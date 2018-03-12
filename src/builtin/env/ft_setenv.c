@@ -6,25 +6,55 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 20:08:48 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/05 17:20:38 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/12 23:28:39 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/minishell.h"
 
+// probleme env meme nom de variable et guillemet
+
+static char	*join_del_quotes(char *str, char *str2)
+{
+	char	*word;
+	char	*tmp;
+	char	*tmp2;
+
+	tmp = ft_str_delchar(str, '"');
+	if (!tmp)
+	{
+		tmp2 = ft_str_delchar(str2, '"');
+		if (tmp2)
+		{
+			word = ft_strjoin(str, tmp2);
+			free(tmp2);
+		}
+		else
+			word = ft_strjoin(str, str2);
+	}
+	else
+	{
+		word = ft_strjoin(tmp, str2);
+		free(tmp);
+	}
+	return (word);
+}
+
 static char	*ft_join_env(char **tab)
 {
-	char	*tmp;
+	char	*str_left;
 	char	*str;
 
-	tmp = ft_strjoin(tab[0], "=");
+	if (!tab || !tab[0])
+		return (NULL);
+	str_left = join_del_quotes(tab[0], "=");
 	if (tab[1] != NULL)
 	{
-		str = ft_strjoin(tmp, tab[1]);
-		free(tmp);
+		str = join_del_quotes(str_left, tab[1]);
+		free(str_left);
 		return (str);
 	}
-	return (tmp);
+	return (str_left);
 }
 
 static void	ft_create_var(t_sh **sh, char **tab, int print)
@@ -43,7 +73,10 @@ static void	ft_create_var(t_sh **sh, char **tab, int print)
 	else
 	{
 		elem = ft_lstnew((void *)str, ft_strlen(str));
-		ft_lstaddend(&(*sh)->envp->built, elem);
+		if ((*sh)->envp->built)
+			ft_lstaddend(&(*sh)->envp->built, elem);
+		else
+			(*sh)->envp->built = elem;
 		free(str);
 	}
 	if (print)
