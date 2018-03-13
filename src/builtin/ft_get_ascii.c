@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 20:59:03 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/09 16:45:20 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/13 15:31:15 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,25 @@ static unsigned char	get_ascii_octal(char *word, int *ret)
 	return (nbr);
 }
 
-static wchar_t			ft_get_ascii_1(char *word, int i, int *ret)
+static wchar_t			ft_get_ascii_1(char *word, int *i, int *ret)
 {
-	if (word[i + 1] == 'a')
-		return (ft_get_c('\a', &i));
-	else if (word[i + 1] == 'b')
-		return (ft_get_c('\b', &i));
-	else if (word[i + 1] == 'f')
-		return (ft_get_c('\f', &i));
-	else if (word[i + 1] == 'n')
-		return (ft_get_c('\n', &i));
-	else if (word[i + 1] == 'r')
-		return (ft_get_c('\r', &i));
-	else if (word[i + 1] == 't')
-		return (ft_get_c('\t', &i));
-	else if (word[i + 1] == 'v')
-		return (ft_get_c('\v', &i));
-	else if (word[i + 1] == '\\')
-		return (ft_get_c('\\', &i));
-	else if (word[i + 1] == 'c')
+	if (word[*i + 1] == 'a')
+		return (ft_get_c('\a', i));
+	else if (word[*i + 1] == 'b')
+		return (ft_get_c('\b', i));
+	else if (word[*i + 1] == 'f')
+		return (ft_get_c('\f', i));
+	else if (word[*i + 1] == 'n')
+		return (ft_get_c('\n', i));
+	else if (word[*i + 1] == 'r')
+		return (ft_get_c('\r', i));
+	else if (word[*i + 1] == 't')
+		return (ft_get_c('\t', i));
+	else if (word[*i + 1] == 'v')
+		return (ft_get_c('\v', i));
+	else if (word[*i + 1] == '\\')
+		return (ft_get_c('\\', i));
+	else if (word[*i + 1] == 'c')
 	{
 		*ret = -1;
 		return ('\0');
@@ -84,7 +84,7 @@ wchar_t					ft_get_ascii(char *word, int b, int *ret)
 	{
 		if (word[i + 1] != '\0')
 		{
-			if ((tmp = ft_get_ascii_1(word, i, ret)) != 0)
+			if ((tmp = ft_get_ascii_1(word, &i, ret)) != 0)
 				c = tmp;
 			else if (word[i + 1] == '0')
 			{
