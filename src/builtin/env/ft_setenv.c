@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 20:08:48 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/13 14:09:39 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/13 14:45:24 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static char	*del_quotes(char **str)
 	if (tmp)
 	{
 		free(*str);
-		ret = 1;
 		*str = tmp;
 	}
 	tmp = ft_str_delchar(*str, '\'');
