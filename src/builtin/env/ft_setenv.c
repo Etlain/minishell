@@ -6,7 +6,7 @@
 /*   By: mmouhssi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 20:08:48 by mmouhssi          #+#    #+#             */
-/*   Updated: 2018/03/12 23:28:39 by mmouhssi         ###   ########.fr       */
+/*   Updated: 2018/03/13 14:09:39 by mmouhssi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 
 // probleme env meme nom de variable et guillemet
 
-static char	*join_del_quotes(char *str, char *str2)
+static char	*del_quotes(char **str)
 {
 	char	*word;
 	char	*tmp;
-	char	*tmp2;
+	int		ret;
 
-	tmp = ft_str_delchar(str, '"');
-	if (!tmp)
+	ret = 0;
+	tmp = ft_str_delchar(*str, '"');
+	if (tmp)
 	{
-		tmp2 = ft_str_delchar(str2, '"');
-		if (tmp2)
-		{
-			word = ft_strjoin(str, tmp2);
-			free(tmp2);
-		}
-		else
-			word = ft_strjoin(str, str2);
+		free(*str);
+		ret = 1;
+		*str = tmp;
 	}
-	else
+	tmp = ft_str_delchar(*str, '\'');
+	if (tmp)
 	{
-		word = ft_strjoin(tmp, str2);
-		free(tmp);
+		free(*str);
+		ret = 1;
 	}
-	return (word);
+	if (ret == 1)
+		return (tmp);
+	return (*str);
 }
 
 static char	*ft_join_env(char **tab)
@@ -47,10 +46,10 @@ static char	*ft_join_env(char **tab)
 
 	if (!tab || !tab[0])
 		return (NULL);
-	str_left = join_del_quotes(tab[0], "=");
+	str_left = ft_strjoin(tab[0], "=");
 	if (tab[1] != NULL)
 	{
-		str = join_del_quotes(str_left, tab[1]);
+		str = ft_strjoin(str_left, tab[1]);
 		free(str_left);
 		return (str);
 	}
@@ -86,6 +85,7 @@ static void	ft_create_var(t_sh **sh, char **tab, int print)
 void		ft_setenv(t_sh **sh, char **tab, int print)
 {
 	int		i;
+	char	*tmp;
 
 	if (!sh || !tab)
 		return ;
@@ -95,5 +95,9 @@ void		ft_setenv(t_sh **sh, char **tab, int print)
 	else if (i < 2)
 		ft_lst_putendl((*sh)->envp->built);
 	else
+	{
+		tab[0] = del_quotes(&tab[0]);
+		tab[1] = del_quotes(&tab[1]);
 		ft_create_var(sh, tab, print);
+	}
 }
